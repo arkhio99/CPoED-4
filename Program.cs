@@ -84,7 +84,7 @@ namespace CPoED_4
             double dispersionOfErrors_1=GetDispersion(errorsX_1,GetMathExpect(errorsX_1));
             output.WriteLine($"Дисперсия: {dispersionOfErrors_1}");
             
-
+            
             }
         }
     }
