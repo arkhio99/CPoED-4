@@ -142,16 +142,16 @@ namespace CPoED_4
 
             
             output.WriteLine("\n\n3 пункт:");
-            double[] t=new double[n];
+            double[] tAr=new double[n];
             for(int i=0;i<n;i++)
-            t[i]=i+1;
+            tAr[i]=i+1;
 
-            double sumOft=SumWithFunc(t,t=>t);
+            double sumOft=SumWithFunc(tAr,t=>t);
             double sumOfx=SumWithFunc(data,t=>t);
-            double sumofSqrsOft=SumWithFunc(t,t=>t*t);
+            double sumofSqrsOft=SumWithFunc(tAr,t=>t*t);
             double sumOfxt=0;
             for(int i=0;i<n;i++)
-                sumOfxt+=data[i]*t[i];
+                sumOfxt+=data[i]*tAr[i];
             double _a1=(n*sumOfxt-sumOft*sumOfx)/(n*sumofSqrsOft-sumOft*sumOft);
             double _a0=(sumOfx-_a1*sumOft)/n;
             string s=$"X(t)={_a1:f2}*t";
@@ -194,6 +194,25 @@ namespace CPoED_4
             for(int i=0;i<n;i++)
                 output.WriteLine($"{s2_03_4[i]:f2}");
 
+            output.WriteLine("\n\n5 пункт:");
+            double[] newX_01_5=new double[n];
+            for(int t=0;t<n;t++)
+            {
+                newX_01_5[t]=a0_01_4[t]+a1_01_4[t];
+            }
+            output.WriteLine("Прогноз для альфа, равного 0.1:");
+            for(int t=0;t<n;t++)
+                output.WriteLine($"{newX_01_5[t]:f2}");
+
+            double[] newX_03_5=new double[n];
+            for(int t=0;t<n;t++)
+            {
+                newX_03_5[t]=a0_03_4[t]+a1_03_4[t];
+            }
+            output.WriteLine("\nПрогноз для альфа, равного 0.1:");
+            for(int t=0;t<n;t++)
+                output.WriteLine($"{newX_03_5[t]:f2}");
+            
             
             }
         }
