@@ -45,6 +45,17 @@ namespace CPoED_4
         {
             return alpha*x+(1-alpha)*s1Last;
         }
+
+        static double GetDispersionOfErrors(double[] s1,double n)// n - порядок полинома 
+        {
+            double res=0;
+            double N=s1.Length;
+            double mathExpect=GetMathExpect(s1);
+            for(int i=0;i<N;i++)
+                res+=(s1[i]-mathExpect)*(s1[i]-mathExpect);
+            return res/(N-n-1);
+        }
+
         static void DoSecondTask(StreamWriter output,double[] data, double[] s1, double[] errorsX,double alpha)
         {
             output.WriteLine($"\nАльфа: {alpha:f1}");
@@ -68,7 +79,7 @@ namespace CPoED_4
             for(int i=0;i<n;i++)
                 output.WriteLine($"{i+1} неделя: {errorsX_1[i]:f3}");
 
-            double dispersionOfErrors_1=GetDispersion(errorsX_1,GetMathExpect(errorsX_1));
+            double dispersionOfErrors_1=GetDispersionOfErrors(s1,0);
             output.WriteLine($"Дисперсия: {dispersionOfErrors_1}");
         }
         static void Main(string[] args)
@@ -96,6 +107,7 @@ namespace CPoED_4
             double[] errorsX_1_03=new double[1];
             DoSecondTask(output,data,s1_03,errorsX_1_03,alpha);
 
+            
 
             
             
