@@ -46,13 +46,13 @@ namespace CPoED_4
             return alpha*x+(1-alpha)*s1Last;
         }
 
-        static double GetDispersionOfErrors(double[] s1,double n)// n - порядок полинома 
+        static double GetDispersionOfErrors(double[] data,double[] s1,double n)// n - порядок полинома 
         {
             double res=0;
             double N=s1.Length;
             double mathExpect=GetMathExpect(s1);
             for(int i=0;i<N;i++)
-                res+=(s1[i]-mathExpect)*(s1[i]-mathExpect);
+                res+=(s1[i]-data[i])*(s1[i]-data[i]);
             return res/(N-n-1);
         }
 
@@ -79,7 +79,7 @@ namespace CPoED_4
             for(int i=0;i<n;i++)
                 output.WriteLine($"{i+1} неделя: {errorsX_1[i]:f3}");
 
-            double dispersionOfErrors_1=GetDispersionOfErrors(s1,0);
+            double dispersionOfErrors_1=GetDispersionOfErrors(data,s1,0);
             output.WriteLine($"Дисперсия: {dispersionOfErrors_1}");
         }
         
@@ -203,7 +203,7 @@ namespace CPoED_4
             output.WriteLine("Прогноз для альфа, равного 0.1:");
             for(int t=0;t<n;t++)
                 output.WriteLine($"{newX_01_5[t]:f2}");
-
+            output.WriteLine(GetDispersionOfErrors(data,newX_01_5,1));
             double[] newX_03_5=new double[n];
             for(int t=0;t<n;t++)
             {
@@ -212,16 +212,20 @@ namespace CPoED_4
             output.WriteLine("\nПрогноз для альфа, равного 0.3:");
             for(int t=0;t<n;t++)
                 output.WriteLine($"{newX_03_5[t]:f2}");
+                
+            output.WriteLine(GetDispersionOfErrors(data,newX_03_5,1));
             
             output.WriteLine("\n\n6 пункт:");
             double[] newX_01_6=new double[n];
             for(int t=0;t<n;t++)
             {
-                newX_01_6[t]=a0_01_4[t]+a1_01_4[t];
+                newX_01_6[t]=a0_01_4[t]+5*a1_01_4[t];
             }
             output.WriteLine("Прогноз для альфа, равного 0.1:");
             for(int t=0;t<n;t++)
                 output.WriteLine($"{newX_01_6[t]:f2}");
+
+            output.WriteLine(GetDispersionOfErrors(data,newX_01_6,1));
 
             double[] newX_03_6=new double[n];
             for(int t=0;t<n;t++)
@@ -231,6 +235,20 @@ namespace CPoED_4
             output.WriteLine("\nПрогноз для альфа, равного 0.3:");
             for(int t=0;t<n;t++)
                 output.WriteLine($"{newX_03_6[t]:f2}");
+                
+            output.WriteLine(GetDispersionOfErrors(data,newX_03_6,1));
+
+            output.WriteLine("\nСедьмое задание:");
+            for(int i=0;i<n;i++)
+            {
+                output.WriteLine($"{newX_01_5[i]-data[i]:F2}");
+            }
+
+            output.WriteLine("\nПроверка на экспоненциальность:");
+            for(int i=1;i<n;i++)
+            {
+                output.WriteLine($"{newX_01_5[i]/newX_01_5[i-1]:F2}");
+            }
             }
         }
     }
