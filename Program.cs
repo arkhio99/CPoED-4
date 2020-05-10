@@ -56,7 +56,7 @@ namespace CPoED_4
             return res/(N-n-1);
         }
 
-        static void DoSecondTask(StreamWriter output,double[] data, double[] s1, double[] errorsX,double alpha)
+        static void DoSecondTask(StreamWriter output,double[] data,ref double[] s1,ref double[] errorsX,double alpha)
         {
             output.WriteLine($"\nАльфа: {alpha:f1}");
             int n=data.Length;
@@ -93,8 +93,30 @@ namespace CPoED_4
             }
             return res;
         }
+        static void DoFourthTask(double[] data,ref double[] s1,ref double[] s2,ref double[] a0,ref double[] a1, double alpha, double _a0, double _a1)
+        {
+            int n=data.Length;
+            a0=new double[n];
+            a1=new double[n];
+            a0[0]=_a0;
+            a1[0]=_a1;
+            double beta=1-alpha;
+            for(int i=1;i<n;i++)
+            {
+                a0[i]=data[i]+beta*beta*(a0[i-1]+a1[i-1]-data[i]);
+                a1[i]=a1[i-1]+alpha*alpha*(a0[i-1]+a1[i-1]-data[i]);
+            }
+            s1=new double[n];
+            s2=new double[n];
+            for(int i=0;i<n;i++)
+            {
+                s1[i]=a0[i]-(beta/alpha)*a1[i];
+                s2[i]=a0[i]-(2*beta/alpha)*a1[i];
+            }
+        }
         static void Main(string[] args)
         {
+            // названия переменных в формате <имя>_<альфа>_<пункт>
             using (var output = new StreamWriter(pathOutput))
             {
             output.WriteLine("1 пункт:");
@@ -109,14 +131,14 @@ namespace CPoED_4
 
             output.WriteLine("\n\n2 пункт:");
             double alpha =0.1;
-            double[] s1_01=new double[1];
-            double[] errorsX_1_01=new double[1];
-            DoSecondTask(output,data,s1_01,errorsX_1_01,alpha);
+            double[] s1_01_2=new double[0];
+            double[] errorsX_01_2=new double[0];
+            DoSecondTask(output,data,ref s1_01_2,ref errorsX_01_2,alpha);
             
             alpha=0.3;
-            double[] s1_03=new double[1];
-            double[] errorsX_1_03=new double[1];
-            DoSecondTask(output,data,s1_03,errorsX_1_03,alpha);
+            double[] s1_03_2=new double[0];
+            double[] errorsX_03_2=new double[0];
+            DoSecondTask(output,data,ref s1_03_2,ref errorsX_03_2,alpha);
 
             
             output.WriteLine("\n\n3 пункт:");
@@ -130,13 +152,48 @@ namespace CPoED_4
             double sumOfxt=0;
             for(int i=0;i<n;i++)
                 sumOfxt+=data[i]*t[i];
-            double a1=(n*sumOfxt-sumOft*sumOfx)/(n*sumofSqrsOft-sumOft*sumOft);
-            double a0=(sumOfx-a1*sumOft)/n;
-            string s=$"X(t)={a1:f2}*t";
-            s+=a0<0?$"{a0:f2}":$"+{a0:f2}";
+            double _a1=(n*sumOfxt-sumOft*sumOfx)/(n*sumofSqrsOft-sumOft*sumOft);
+            double _a0=(sumOfx-_a1*sumOft)/n;
+            string s=$"X(t)={_a1:f2}*t";
+            s+=_a0<0?$"{_a0:f2}":$"+{_a0:f2}";
             output.WriteLine(s);
             
-            
+            output.WriteLine("\n\n4 пункт:");
+            alpha=0.1;
+            double[] s1_01_4=new double[0];
+            double[] s2_01_4=new double[0];
+            double[] a0_01_4=new double[0];
+            double[] a1_01_4=new double[0];
+            DoFourthTask(data,
+                        ref s1_01_4,
+                        ref s2_01_4,
+                        ref a0_01_4,
+                        ref a1_01_4,
+                        alpha,_a0,_a1);
+            output.WriteLine("Для альфа, равного 0.1:\nS1:");
+            for(int i=0;i<n;i++)
+                output.WriteLine($"{s1_01_4[i]:f2}");
+            output.WriteLine("\nS2:");
+            for(int i=0;i<n;i++)
+                output.WriteLine($"{s2_01_4[i]:f2}");
+            alpha=0.3;
+            double[] s1_03_4=new double[0];
+            double[] s2_03_4=new double[0];
+            double[] a0_03_4=new double[0];
+            double[] a1_03_4=new double[0];
+            DoFourthTask(data,
+                        ref s1_03_4,
+                        ref s2_03_4,
+                        ref a0_03_4,
+                        ref a1_03_4,
+                        alpha,_a0,_a1);
+            output.WriteLine("\nДля альфа, равного 0.3:\nS1:");
+            for(int i=0;i<n;i++)
+                output.WriteLine($"{s1_03_4[i]:f2}");
+            output.WriteLine("\nS2:");
+            for(int i=0;i<n;i++)
+                output.WriteLine($"{s2_03_4[i]:f2}");
+
             
             }
         }
