@@ -1,0 +1,13 @@
+F:\Git\CPoED-4\bin\Debug\netcoreapp3.1\CPoED-4.exe
+F:\Git\CPoED-4\bin\Debug\netcoreapp3.1\CPoED-4.deps.json
+F:\Git\CPoED-4\bin\Debug\netcoreapp3.1\CPoED-4.runtimeconfig.json
+F:\Git\CPoED-4\bin\Debug\netcoreapp3.1\CPoED-4.runtimeconfig.dev.json
+F:\Git\CPoED-4\bin\Debug\netcoreapp3.1\CPoED-4.dll
+F:\Git\CPoED-4\bin\Debug\netcoreapp3.1\CPoED-4.pdb
+F:\Git\CPoED-4\obj\Debug\netcoreapp3.1\CPoED-4.csprojAssemblyReference.cache
+F:\Git\CPoED-4\obj\Debug\netcoreapp3.1\CPoED-4.csproj.CoreCompileInputs.cache
+F:\Git\CPoED-4\obj\Debug\netcoreapp3.1\CPoED-4.AssemblyInfoInputs.cache
+F:\Git\CPoED-4\obj\Debug\netcoreapp3.1\CPoED-4.AssemblyInfo.cs
+F:\Git\CPoED-4\obj\Debug\netcoreapp3.1\CPoED-4.dll
+F:\Git\CPoED-4\obj\Debug\netcoreapp3.1\CPoED-4.pdb
+F:\Git\CPoED-4\obj\Debug\netcoreapp3.1\CPoED-4.genruntimeconfig.cache
