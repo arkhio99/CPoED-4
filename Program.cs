@@ -82,6 +82,17 @@ namespace CPoED_4
             double dispersionOfErrors_1=GetDispersionOfErrors(s1,0);
             output.WriteLine($"Дисперсия: {dispersionOfErrors_1}");
         }
+        
+        static double SumWithFunc(double[] x,Func<double,double> f)
+        {
+            double res=0;
+            int n=x.Length;
+            for(int i=0;i<n;i++)
+            {
+                res+=f(x[i]);
+            }
+            return res;
+        }
         static void Main(string[] args)
         {
             using (var output = new StreamWriter(pathOutput))
@@ -108,8 +119,22 @@ namespace CPoED_4
             DoSecondTask(output,data,s1_03,errorsX_1_03,alpha);
 
             
+            output.WriteLine("\n\n3 пункт:");
+            double[] t=new double[n];
+            for(int i=0;i<n;i++)
+            t[i]=i+1;
 
-            
+            double sumOft=SumWithFunc(t,t=>t);
+            double sumOfx=SumWithFunc(data,t=>t);
+            double sumofSqrsOft=SumWithFunc(t,t=>t*t);
+            double sumOfxt=0;
+            for(int i=0;i<n;i++)
+                sumOfxt+=data[i]*t[i];
+            double a1=(n*sumOfxt-sumOft*sumOfx)/(n*sumofSqrsOft-sumOft*sumOft);
+            double a0=(sumOfx-a1*sumOft)/n;
+            string s=$"X(t)={a1:f2}*t";
+            s+=a0<0?$"{a0:f2}":$"+{a0:f2}";
+            output.WriteLine(s);
             
             
             
