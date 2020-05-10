@@ -209,11 +209,28 @@ namespace CPoED_4
             {
                 newX_03_5[t]=a0_03_4[t]+a1_03_4[t];
             }
-            output.WriteLine("\nПрогноз для альфа, равного 0.1:");
+            output.WriteLine("\nПрогноз для альфа, равного 0.3:");
             for(int t=0;t<n;t++)
                 output.WriteLine($"{newX_03_5[t]:f2}");
             
-            
+            output.WriteLine("\n\n6 пункт:");
+            double[] newX_01_6=new double[n];
+            for(int t=0;t<n;t++)
+            {
+                newX_01_6[t]=a0_01_4[t]+a1_01_4[t];
+            }
+            output.WriteLine("Прогноз для альфа, равного 0.1:");
+            for(int t=0;t<n;t++)
+                output.WriteLine($"{newX_01_6[t]:f2}");
+
+            double[] newX_03_6=new double[n];
+            for(int t=0;t<n;t++)
+            {
+                newX_03_6[t]=a0_03_4[t]+5*a1_03_4[t];
+            }
+            output.WriteLine("\nПрогноз для альфа, равного 0.3:");
+            for(int t=0;t<n;t++)
+                output.WriteLine($"{newX_03_6[t]:f2}");
             }
         }
     }
