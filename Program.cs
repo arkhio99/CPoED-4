@@ -45,6 +45,7 @@ namespace CPoED_4
         {
             using (var output = new StreamWriter(pathOutput))
             {
+            output.WriteLine("1 пункт:");
             double[] data=FileIntoArray(pathInput);
             int n=data.Length;
             for(int i=0;i<n;i++)
