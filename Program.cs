@@ -45,6 +45,32 @@ namespace CPoED_4
         {
             return alpha*x+(1-alpha)*s1Last;
         }
+        static void DoSecondTask(StreamWriter output,double[] data, double[] s1, double[] errorsX,double alpha)
+        {
+            output.WriteLine($"\nАльфа: {alpha:f1}");
+            int n=data.Length;
+            s1=new double[n];
+            for(int i=0;i<5;i++)
+                s1[0]+=data[i];
+            s1[0]/=5;
+            for(int i=1;i<n;i++)
+            {
+                s1[i]=GeS1By_t(alpha,data[i],s1[i-1]);
+            }
+            output.WriteLine("Предсказанные значения:");
+            for(int i=0;i<n;i++)
+                output.WriteLine($"{i+1} неделя: {s1[i]:f3}");
+
+            double[] errorsX_1=new double[n];
+            for(int i=0;i<n;i++)
+                errorsX_1[i]=s1[i]-data[i];
+            output.WriteLine("\n\nОшибки:");
+            for(int i=0;i<n;i++)
+                output.WriteLine($"{i+1} неделя: {errorsX_1[i]:f3}");
+
+            double dispersionOfErrors_1=GetDispersion(errorsX_1,GetMathExpect(errorsX_1));
+            output.WriteLine($"Дисперсия: {dispersionOfErrors_1}");
+        }
         static void Main(string[] args)
         {
             using (var output = new StreamWriter(pathOutput))
@@ -61,28 +87,18 @@ namespace CPoED_4
 
             output.WriteLine("\n\n2 пункт:");
             double alpha =0.1;
+            double[] s1_01=new double[1];
+            double[] errorsX_1_01=new double[1];
+            DoSecondTask(output,data,s1_01,errorsX_1_01,alpha);
+            
+            alpha=0.3;
+            double[] s1_03=new double[1];
+            double[] errorsX_1_03=new double[1];
+            DoSecondTask(output,data,s1_03,errorsX_1_03,alpha);
 
-            double[] s1=new double[n];
-            for(int i=0;i<5;i++)
-                s1[0]+=data[i];
-            s1[0]/=5;
-            for(int i=1;i<n;i++)
-            {
-                s1[i]=GeS1By_t(alpha,data[i],s1[i-1]);
-            }
-            output.WriteLine("Предсказанные значения:");
-            for(int i=0;i<n;i++)
-                output.WriteLine($"{i+1} неделя: {s1[i]}");
 
-            double[] errorsX_1=new double[n];
-            for(int i=0;i<n;i++)
-                errorsX_1[i]=s1[i]-data[i];
-            output.WriteLine("\n\nОшибки:");
-            for(int i=0;i<n;i++)
-                output.WriteLine($"{i+1} неделя: {errorsX_1[i]}");
-
-            double dispersionOfErrors_1=GetDispersion(errorsX_1,GetMathExpect(errorsX_1));
-            output.WriteLine($"Дисперсия: {dispersionOfErrors_1}");
+            
+            
             
             
             }
