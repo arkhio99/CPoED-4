@@ -8,28 +8,30 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\vladb\\.nuget\\packages\\": {},
-    "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\PussyDominator\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Git\\CPoED-4\\CPoED-4.csproj",
+      "projectUniqueName": "C:\\Users\\PussyDominator\\Documents\\GitHub\\CPoED-4\\CPoED-4.csproj",
       "projectName": "CPoED-4",
-      "projectPath": "F:\\Git\\CPoED-4\\CPoED-4.csproj",
-      "packagesPath": "C:\\Users\\vladb\\.nuget\\packages\\",
-      "outputPath": "F:\\Git\\CPoED-4\\obj\\",
+      "projectPath": "C:\\Users\\PussyDominator\\Documents\\GitHub\\CPoED-4\\CPoED-4.csproj",
+      "packagesPath": "C:\\Users\\PussyDominator\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\PussyDominator\\Documents\\GitHub\\CPoED-4\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\vladb\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\PussyDominator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -60,7 +62,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300-preview-015115\\RuntimeIdentifierGraph.json"
       }
     }
   }

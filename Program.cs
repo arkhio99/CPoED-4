@@ -14,7 +14,7 @@ namespace CPoED_4
                 res[i]=f(ar[i]);
             return res;
         }
-        static string pathInput=@"C:\Users\vladb\Desktop\Input.txt";
+        static string pathInput=@"C:\Users\PussyDominator\Documents\GitHub\CPoED-4\values.txt";
         static string pathOutput="out.txt";
         static double[] FileIntoArray(string path)
         {
